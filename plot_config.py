@@ -29,10 +29,11 @@ def setup():
     else:  # Linux / Codespaces
         import shutil, subprocess
 
-        # matplotlib 폰트 캐시 삭제 후 재스캔
+        # matplotlib 폰트 캐시 디렉토리 초기화 후 재스캔
         cache_dir = os.path.expanduser('~/.cache/matplotlib')
         if os.path.exists(cache_dir):
             shutil.rmtree(cache_dir, ignore_errors=True)
+        os.makedirs(cache_dir, exist_ok=True)
         fm._load_fontmanager(try_read_cache=False)
 
         # 고정 경로에서 Nanum 폰트 확인
